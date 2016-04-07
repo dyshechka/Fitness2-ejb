@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="trainerView/listFrozenClient.xhtml" x="1149" y="820" zoom="true"/>
+        <Node id="index.xhtml" x="24" y="749" zoom="true"/>
+        <Node id="adminView/mainPagesOfAdmin.xhtml" x="259" y="658" zoom="true"/>
+        <Node id="trainerView/editGroup.xhtml" x="303" y="818" zoom="true"/>
+        <Node id="adminView/editRole.xhtml" x="471" y="421" zoom="true"/>
+        <Node id="trainerView/changeGroupToClient.xhtml" x="891" y="896" zoom="true"/>
+        <Node id="clientView/mainPagesOfClient.xhtml" x="743" y="291" zoom="true"/>
+        <Node id="trainerView/detailsGroup.xhtml" x="470" y="913" zoom="true"/>
+        <Node id="clientView/editDataYourself.xhtml" x="1242" y="135" zoom="true"/>
+        <Node id="clientView/aboutSubscription.xhtml" x="846" y="390" zoom="true"/>
+        <Node id="error/404.xhtml" x="179" y="6" zoom="true"/>
+        <Node id="trainerView/deleteGroup.xhtml" x="647" y="546" zoom="true"/>
+        <Node id="trainerView/showFramedSubscription.xhtml" x="1109" y="658" zoom="true"/>
+        <Node id="trainerView/mainPagesOfTrainer.xhtml" x="704" y="723" zoom="true"/>
+        <Node id="clientView/deleteSubscription.xhtml" x="539" y="69" zoom="true"/>
+        <Node id="adminView/createNewUser.xhtml" x="277" y="346" zoom="true"/>
+        <Node id="template.xhtml" x="-15" y="6" zoom="true"/>
+        <Node id="adminView/deleteUser.xhtml" x="147" y="401" zoom="true"/>
+        <Node id="register.xhtml" x="-13" y="65" zoom="true"/>
+        <Node id="error/error.xhtml" x="375" y="6" zoom="true"/>
+        <Node id="trainerView/createNewGroup.xhtml" x="966" y="549" zoom="true"/>
+        <Node id="clientView/paySubscription.xhtml" x="344" y="152" zoom="true"/>
+        <Node id="clientView/createNewSubscription.xhtml" x="807" y="22" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

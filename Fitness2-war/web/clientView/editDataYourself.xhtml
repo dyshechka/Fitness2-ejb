@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml">
+
+    <ui:define name="title">
+        Изменение личных данных
+    </ui:define>
+
+    <ui:define name="pagename">
+        Изменение личных данных
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <h:outputLabel value="Фамилия Имя Отчество" for="fullName" />
+            <h:inputText id="fullName" value="#{clientController.currentUser.fullName}" title="fullName" />
+
+            <h:outputLabel value="Дата рождения" for="dateOfBirth" />
+            <h:inputText id="dateOfBirth" value="#{clientController.currentUser.dateOfBirth}" title="dateOfBirth">
+                <f:convertDateTime pattern="dd-MM-yyyy"/>
+            </h:inputText>
+
+            <h:outputLabel value="Адрес эл. почты" for="email" />
+            <h:inputText id="email" value="#{clientController.currentUser.email}" title="email" />
+
+            <h:outputLabel value="Телефон" for="telephone" />
+            <h:inputText id="telephone" value="#{clientController.currentUser.telephone}" title="telephone" />
+
+            <br/>    
+            <h:commandButton action="#{clientController.updateYourselfConfirm()}" value="Изменить" class="btn btn-success"/>
+        </h:form>
+
+        <hr/>
+        <div class="footer-menu">
+            <h:link outcome="client" value="Вернуться назад"/>
+        </div>
+    </ui:define>
+
+</ui:composition>

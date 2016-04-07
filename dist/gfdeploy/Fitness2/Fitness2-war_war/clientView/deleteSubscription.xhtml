@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml">
+
+    <ui:define name="title">
+        Удалить абонемент
+    </ui:define>
+
+    <ui:define name="pagename">
+        Вы уверены, что хотите удалить абонемент?
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <h:outputLabel value="Тип тренировки"/>
+
+            <h:outputLabel value="Вид тренировки"/>
+
+            <h:outputLabel value="Продолжительность"/>
+
+            <h:outputLabel value="Стоимость"/>
+            <br/>
+            <h:commandButton action="#{clientController.deleteSubscriptionConfirm()}" value="Удалить" class="btn btn-success"/>
+        </h:form>
+        
+        <hr/>
+        <div class="footer-menu">
+            <h:link outcome="client" value="Вернуться назад"/>
+        </div>
+    </ui:define>
+
+</ui:composition>

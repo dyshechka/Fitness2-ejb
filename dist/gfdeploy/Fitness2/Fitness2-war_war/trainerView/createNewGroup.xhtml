@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">
+        Создать новую группу
+    </ui:define>
+
+    <ui:define name="pagename">
+        Создать группу
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+
+            <h:outputLabel value="Название группы" for="nameGroup" />
+            <h:inputText id="nameGroup" value="#{trainerController.group.nameGroup}" title="nameGroup" />
+
+            <h:outputLabel value="Название тренировки" for="nameTraining" />
+            <h:inputText id="nameTraining" value="#{trainerController.group.typeTraining}" title="nameTraining" />
+
+            <br/>    
+            <h:commandButton action="#{trainerController.createNewGroupConfirm()}" value="Создать" class="btn btn-success"/>
+        </h:form>
+
+        <hr/>
+        <div class="footer-menu">
+            <h:link outcome="trainer" value="Вернуться назад"/>
+        </div>
+    </ui:define>
+
+</ui:composition>
