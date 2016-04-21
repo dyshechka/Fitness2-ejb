@@ -16,9 +16,13 @@ public class AdminController implements Serializable {
     @EJB
     private AdminService as;
     
+    private static final long serialVersionUID = 1506177076992855056L;
+    
     private UserFitness user;
     private int idRole;
 
+
+    
     public UserFitness getUser() {
         return user;
     }
@@ -26,7 +30,7 @@ public class AdminController implements Serializable {
     public void setUser(UserFitness user) {
         this.user = user;
     }
-
+    
     public int getIdRole() {
         return idRole;
     }

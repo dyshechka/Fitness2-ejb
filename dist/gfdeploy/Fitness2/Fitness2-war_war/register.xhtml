@@ -3,7 +3,8 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./template.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns="http://www.w3.org/1999/xhtml">
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">
         Регистрация
@@ -17,25 +18,27 @@
         <h:form>
 
             <h:outputLabel value="Фамилия Имя Отчество" for="fullName" />
-            <h:inputText id="fullName" value="#{clientController.currentUser.fullName}" title="fullName" />
+            <h:inputText id="fullName" value="#{autoController.userData.fio}" title="fullName" />
             
             <h:outputLabel value="Дата рождения" for="dateOfBirth" />
-            <h:inputText id="dateOfBirth" value="#{clientController.currentUser.dateOfBirth}" title="dateOfBirth" />
+            <h:inputText id="dateOfBirth" value="#{autoController.userData.dateOfBirth}" title="dateOfBirth">
+                <f:convertDateTime pattern="dd-MM-yyyy"/>
+            </h:inputText>
             
             <h:outputLabel value="Адрес эл. почты" for="email" />
-            <h:inputText id="email" value="#{clientController.currentUser.email}" title="email" />
+            <h:inputText id="email" value="#{autoController.userData.email}" title="email" />
             
             <h:outputLabel value="Телефон" for="telephone" />
-            <h:inputText id="telephone" value="#{clientController.currentUser.telephone}" title="telephone" />
+            <h:inputText id="telephone" value="#{autoController.userData.telephone}" title="telephone" />
             
             <h:outputLabel value="Логин" for="login" />
-            <h:inputText id="login" value="#{clientController.currentUser.login}" title="login" />
+            <h:inputText id="login" value="#{autoController.userData.login}" title="login" />
             
             <h:outputLabel value="Пароль" for="password" />
-            <h:inputText id="password" value="#{clientController.currentUser.password}" title="password" />
+            <h:inputSecret id="password" value="#{autoController.userData.password}" title="password" />
             
             <br/>    
-            <h:commandButton action="#{adminController.createNewUser()}" value="Зарегистрироваться" class="btn btn-success"/>
+            <h:commandButton action="#{autoController.register()}" value="Зарегистрироваться" class="btn btn-success"/>
         </h:form>
         
         <hr/>

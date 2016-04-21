@@ -2,14 +2,15 @@ package beans;
 
 import services.ClientService;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import models.BankClient;
 import models.Subscription;
 import models.UserFitness;
+import services.AutoService;
 
 @Named
 @SessionScoped
@@ -17,13 +18,18 @@ public class ClientController implements Serializable {
 
     @EJB
     private ClientService cs;
+    
+    @EJB
+    private AutoService as;
 
     private UserFitness currentUser;
     private Subscription subscription;
     private BankClient bankClient;
 
-    public ClientController() {
-        this.currentUser = new UserFitness();
+    @PostConstruct
+    private void onCreate(){
+        currentUser = as.getCurrUser();
+        int a=5;
     }
     
     public UserFitness getCurrentUser() {
@@ -65,8 +71,8 @@ public class ClientController implements Serializable {
     }
 
     public String createSubscriptionConfirm() {
-        
-        cs.createSubscription(subscription);
+        cs.createSubscription(currentUser, subscription);
+        currentUser = as.getCurrUser();
         subscription = new Subscription();
         return "client";
     }
@@ -76,7 +82,7 @@ public class ClientController implements Serializable {
     }
 
     public String deleteSubscriptionConfirm() {
-        cs.deleteSubscription(subscription);
+        cs.deleteSubscription(currentUser.getSubscription());
         return "client";
     }
 

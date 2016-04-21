@@ -1,6 +1,8 @@
 package models;
 
 import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,7 +42,6 @@ public class UserFitness implements Serializable {
     private String login;
     
     @NotNull
-    @Size(max = 20, min = 5)
     private String password;
     
     @NotNull
@@ -50,7 +51,7 @@ public class UserFitness implements Serializable {
     @OneToOne
     private UserRole role;
     
-    @OneToOne
+    @OneToOne (orphanRemoval = true)
     private Subscription subscription;
     
     public int getIdUser() {
@@ -106,7 +107,7 @@ public class UserFitness implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = encryptPassword(password);
     }
   
     public boolean isFrozen() {
@@ -141,4 +142,22 @@ public class UserFitness implements Serializable {
         this.subscription = subscription;
     }
     
+    private String encryptPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(password.getBytes());
+            byte byteData[] = md.digest();
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : byteData) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException ex) {
+            return password;
+        }
+    }
 }

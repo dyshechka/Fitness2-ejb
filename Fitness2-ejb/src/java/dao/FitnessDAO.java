@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import models.FitnessGroup;
@@ -36,8 +37,7 @@ public class FitnessDAO implements FitnessDAOLocal {
 
     @Override
     public List<UserFitness> readFrozenUsers() {
-        Query query;
-        query = em.createQuery("SELECT u FROM UserFitness u WHERE (u.frozen=TRUE) AND (u.role.nameRole='Клиент') AND (u.subscription <> NULL)");
+        Query query = em.createQuery("SELECT u FROM UserFitness u WHERE (u.frozen=TRUE) AND (u.role.nameRole='Клиент') AND (u.subscription <> NULL)", UserFitness.class);
         return query.getResultList();
     }
 
@@ -64,6 +64,7 @@ public class FitnessDAO implements FitnessDAOLocal {
         return query.getResultList();
     }
 
+    
     @Override
     public void createGroup(FitnessGroup group) {
         em.persist(group);
@@ -134,5 +135,27 @@ public class FitnessDAO implements FitnessDAOLocal {
     @Override
     public UserRole readRole(int idRole) {
         return em.find(UserRole.class, idRole);
+    }
+
+    @Override
+    public UserFitness readUserByLogin(String login) {
+        try {
+            Query query = em.createQuery("SELECT u FROM UserFitness u WHERE u.login=?1", UserFitness.class);
+            query.setParameter(1, login);
+            return (UserFitness) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public UserRole readRoleByName(String nameRole) {
+        try {
+            Query query = em.createQuery("SELECT u FROM UserRole u WHERE u.nameRole=?1", UserRole.class);
+            query.setParameter(1, nameRole);
+            return (UserRole) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 }

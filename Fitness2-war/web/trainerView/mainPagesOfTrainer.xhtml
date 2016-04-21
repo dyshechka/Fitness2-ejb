@@ -42,12 +42,13 @@
             <h:link outcome="listFrozen" value="Список замороженных пользователей"/>
             <br/>
             <h:link outcome="showFramedSub" value="Список оформленных абонементов"/> 
+            
+            <hr/>
+            <div class="footer-menu">
+                <h:commandLink action="#{autoController.logout()}" value="Выйти"/> 
+            </div>
         </h:form>
 
-        <hr/>
-        <div class="footer-menu">
-            <h:link outcome="index" value="Выйти"/> 
-        </div>
     </ui:define>
 
 </ui:composition>

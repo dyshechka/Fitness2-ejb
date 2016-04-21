@@ -11,8 +11,8 @@
         <Node id="clientView/mainPagesOfClient.xhtml" x="743" y="291" zoom="true"/>
         <Node id="trainerView/detailsGroup.xhtml" x="470" y="913" zoom="true"/>
         <Node id="clientView/editDataYourself.xhtml" x="1242" y="135" zoom="true"/>
-        <Node id="clientView/aboutSubscription.xhtml" x="846" y="390" zoom="true"/>
         <Node id="error/404.xhtml" x="179" y="6" zoom="true"/>
+        <Node id="clientView/aboutSubscription.xhtml" x="1110" y="368" zoom="true"/>
         <Node id="trainerView/deleteGroup.xhtml" x="647" y="546" zoom="true"/>
         <Node id="trainerView/showFramedSubscription.xhtml" x="1109" y="658" zoom="true"/>
         <Node id="trainerView/mainPagesOfTrainer.xhtml" x="704" y="723" zoom="true"/>
@@ -21,8 +21,8 @@
         <Node id="template.xhtml" x="-15" y="6" zoom="true"/>
         <Node id="adminView/deleteUser.xhtml" x="147" y="401" zoom="true"/>
         <Node id="register.xhtml" x="-13" y="65" zoom="true"/>
-        <Node id="error/error.xhtml" x="375" y="6" zoom="true"/>
         <Node id="trainerView/createNewGroup.xhtml" x="966" y="549" zoom="true"/>
+        <Node id="error/error.xhtml" x="375" y="6" zoom="true"/>
         <Node id="clientView/paySubscription.xhtml" x="344" y="152" zoom="true"/>
         <Node id="clientView/createNewSubscription.xhtml" x="807" y="22" zoom="true"/>
     </Scope>

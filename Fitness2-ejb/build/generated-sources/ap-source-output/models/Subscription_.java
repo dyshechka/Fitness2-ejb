@@ -6,7 +6,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import models.UserFitness;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-04-07T21:34:19")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-04-21T21:57:02")
 @StaticMetamodel(Subscription.class)
 public class Subscription_ { 
 

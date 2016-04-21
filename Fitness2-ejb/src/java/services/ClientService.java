@@ -37,16 +37,20 @@ public class ClientService {
         return fitDAO.updateUser(user);
     }
 
-    public void createSubscription(Subscription subscription) {
+    public void createSubscription(UserFitness user, Subscription subscription) {
         subscription.setDateOfPurchase(new Date());
         subscription.setStatus("Оформлен");
         subscription.setPrice((subscription.isNeedGroup() ? COEF_WITH_GROUP : COEF_WITHOUT_GROUP) 
                 * COEF_PRICE_IN_MONTH * subscription.getDuration());
+        user.setSubscription(subscription);
         fitDAO.createSubscription(subscription);
+        fitDAO.updateUser(user);
     }
 
     public void deleteSubscription(Subscription sub) {
-        fitDAO.deleteSubscription(sub);
+        UserFitness user = sub.getUser();
+        user.setSubscription(null);
+        fitDAO.updateUser(user);
     }
 
     public List<String> getAllType() {

@@ -18,14 +18,14 @@
         <h:form>
 
             <h:outputLabel value="Логин" for="login" />
-            <h:inputText id="login" value="#{clientController.currentUser.login}" title="login" />
+            <h:inputText id="login" value="#{autoController.userData.login}" title="login" />
             
             <h:outputLabel value="Пароль" for="password" />
-            <h:inputText id="password" value="#{clientController.currentUser.password}" title="password" />
+            <h:inputSecret id="password" value="#{autoController.userData.password}" title="password" />
             
             <br/> 
             
-            <h:commandButton action="#{adminController.createNewUser()}" value="Войти" class="btn btn-success"/>
+            <h:commandButton action="#{autoController.login()}" value="Войти" class="btn btn-success"/>
             
             <hr/>
             

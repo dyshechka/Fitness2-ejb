@@ -15,7 +15,7 @@
     </ui:define>
 
     <ui:define name="content">
-        <p>Здесь будет выводиться информация об абонементе клиента</p>
+        <h:outputText value="#{clientController.currentUser.subscription.status}"/>
         <hr/>
         <div class="footer-menu">
             <h:link outcome="client" value="Вернуться назад"/>

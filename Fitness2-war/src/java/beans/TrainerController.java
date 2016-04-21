@@ -8,6 +8,7 @@ import javax.inject.Named;
 import models.FitnessGroup;
 import models.Subscription;
 import models.UserFitness;
+import services.AutoService;
 import services.TrainerService;
 
 @Named
@@ -16,10 +17,14 @@ public class TrainerController implements Serializable {
 
     @EJB
     private TrainerService ts;
+    
+    @EJB
+    private AutoService as;
 
     private FitnessGroup group;
     private UserFitness user;
     private FitnessGroup currGroup;
+    
     
     public FitnessGroup getGroup() {
         return group;

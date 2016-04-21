@@ -17,8 +17,10 @@ public interface FitnessDAOLocal {
     List<UserFitness> readFrozenUsers();
     UserFitness updateUser(UserFitness user);
     void deleteUser(UserFitness user);
+    UserFitness readUserByLogin(String login);
     
     UserRole readRole(int idRole);
+    UserRole readRoleByName (String nameRole);
     List<UserRole> readAllRoles();
     List<UserFitness> readTrainers();
 
