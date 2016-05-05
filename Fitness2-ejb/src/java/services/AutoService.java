@@ -35,7 +35,4 @@ public class AutoService {
         user.setRole(fitnessDAO.readRoleByName("Клиент"));
         fitnessDAO.createUser(user);
     }
-    
-    
-    
 }

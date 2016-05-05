@@ -18,7 +18,7 @@
         <h:form>
 
             <h:outputLabel value="Выберите роль" for="editRole" />
-            <h:selectOneMenu id="editRole" value="#{adminController.idRole}" title="editRole" >
+            <h:selectOneMenu id="editRole" value="#{adminController.idRole}" title="editRole">
                 <f:selectItems value="#{adminController.allRoles}" var="role" itemLabel="#{role.nameRole}" itemValue="#{role.idRole}"/>
             </h:selectOneMenu>
             <br/>

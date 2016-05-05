@@ -7,7 +7,7 @@
         <Node id="adminView/mainPagesOfAdmin.xhtml" x="259" y="658" zoom="true"/>
         <Node id="trainerView/editGroup.xhtml" x="303" y="818" zoom="true"/>
         <Node id="adminView/editRole.xhtml" x="471" y="421" zoom="true"/>
-        <Node id="trainerView/changeGroupToClient.xhtml" x="891" y="896" zoom="true"/>
+        <Node id="trainerView/changeGroupToClient.xhtml" x="1132" y="902" zoom="true"/>
         <Node id="clientView/mainPagesOfClient.xhtml" x="743" y="291" zoom="true"/>
         <Node id="trainerView/detailsGroup.xhtml" x="470" y="913" zoom="true"/>
         <Node id="clientView/editDataYourself.xhtml" x="1242" y="135" zoom="true"/>
@@ -19,12 +19,12 @@
         <Node id="clientView/deleteSubscription.xhtml" x="539" y="69" zoom="true"/>
         <Node id="adminView/createNewUser.xhtml" x="277" y="346" zoom="true"/>
         <Node id="template.xhtml" x="-15" y="6" zoom="true"/>
-        <Node id="adminView/deleteUser.xhtml" x="147" y="401" zoom="true"/>
         <Node id="register.xhtml" x="-13" y="65" zoom="true"/>
-        <Node id="trainerView/createNewGroup.xhtml" x="966" y="549" zoom="true"/>
+        <Node id="adminView/deleteUser.xhtml" x="147" y="401" zoom="true"/>
         <Node id="error/error.xhtml" x="375" y="6" zoom="true"/>
-        <Node id="clientView/paySubscription.xhtml" x="344" y="152" zoom="true"/>
+        <Node id="trainerView/createNewGroup.xhtml" x="966" y="549" zoom="true"/>
         <Node id="clientView/createNewSubscription.xhtml" x="807" y="22" zoom="true"/>
+        <Node id="clientView/paySubscription.xhtml" x="304" y="134" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

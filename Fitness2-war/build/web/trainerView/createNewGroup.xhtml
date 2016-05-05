@@ -20,8 +20,10 @@
             <h:outputLabel value="Название группы" for="nameGroup" />
             <h:inputText id="nameGroup" value="#{trainerController.group.nameGroup}" title="nameGroup" />
 
-            <h:outputLabel value="Название тренировки" for="nameTraining" />
-            <h:inputText id="nameTraining" value="#{trainerController.group.typeTraining}" title="nameTraining" />
+            <h:outputLabel value="Тип тренировки" for="typeTraining" />
+            <h:selectOneMenu id="typeTraining" value="#{trainerController.group.typeTraining}" title="typeTraining">
+                <f:selectItems value="#{trainerController.typesTraining}"/>
+            </h:selectOneMenu>
 
             <br/>    
             <h:commandButton action="#{trainerController.createNewGroupConfirm()}" value="Создать" class="btn btn-success"/>

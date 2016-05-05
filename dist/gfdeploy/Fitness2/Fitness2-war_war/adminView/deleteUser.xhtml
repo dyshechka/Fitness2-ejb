@@ -3,7 +3,8 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./../template.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">
         Удалить пользователя
@@ -15,14 +16,29 @@
 
     <ui:define name="content">
         <h:form>
-            <h:outputLabel value="Фамилия Имя Отчество" for="fullName" />
-
-            <h:outputLabel value="Дата рождения" for="dateOfBirth" />
-
-            <h:outputLabel value="Адрес эл. почты" for="email" />
-
-            <h:outputLabel value="Телефон" for="telephone" />
-            <br/>
+            <!--            <h:panelGrid>-->
+            <p><b>Фамилия Имя Отчество</b></p> 
+            <!--                <h:outputLabel value="Фамилия Имя Отчество"/>-->
+            <h:outputText value="#{adminController.user.fullName}"/>
+            
+            <p><b>Дата рождения</b></p>
+            <!--            <h2>Дата рождения</h2> -->
+            <!--                <h:outputLabel value="Дата рождения" />-->
+            <h:outputText value="#{adminController.user.dateOfBirth}">
+                <f:convertDateTime pattern="dd.MM.yyyy"/>
+            </h:outputText>
+            
+            <p><b>Адрес эл. почты</b></p>
+<!--            <h2>Адрес эл. почты</h2> -->
+            <!--                <h:outputLabel value="Адрес эл. почты" />-->
+            <h:outputText value="#{adminController.user.email}"/>
+            
+            <p><b>Телефон</b></p>
+<!--            <h2>Телефон</h2> -->
+            <!--                <h:outputLabel value="Телефон" />-->
+            <h:outputText value="#{adminController.user.telephone}"/>
+            <br/><br/>
+            <!--            </h:panelGrid>-->
             <h:commandButton action="#{adminController.deleteUserConfirm()}" value="Удалить" class="btn btn-success"/>
         </h:form>
         <hr/>

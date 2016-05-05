@@ -2,10 +2,12 @@ package beans;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import models.UserData;
 import models.UserFitness;
 import services.AutoService;
@@ -48,6 +50,7 @@ public class AutoController {
                     return "index";
             }
         } catch (ServletException e) {
+            showMessage("Вы пытались..");
             return "index";
         }
     }
@@ -57,8 +60,11 @@ public class AutoController {
             FacesContext context = FacesContext.getCurrentInstance();
             HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
             request.logout();
+            HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+            session.invalidate();
             return "index";
         } catch (ServletException e){
+            showMessage("Упс... Что-то пошло не так");
             return "index";
         }
     }
@@ -66,9 +72,17 @@ public class AutoController {
     public String register() {
         try {
             as.registerUser(userData.getFio(), userData.getDateOfBirth(), userData.getEmail(), userData.getTelephone(), userData.getLogin(), userData.getPassword());
+            showMessage("Пользователь зарегистрирован в систему успешно");
             return "index";
         } catch (Exception e) {
+            showMessage("Кто-то криворучка -___-");
             return "register";
         }
+    }
+    
+    private void showMessage(String message) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(message));
+        context.getExternalContext().getFlash().setKeepMessages(true);
     }
 }

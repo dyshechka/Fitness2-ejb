@@ -17,17 +17,24 @@
     <ui:define name="content">
         <h:form>
             <h:outputLabel value="Тип тренировки" for="typeTrain" />
-            <h:selectOneMenu id="typeTrain" value="#{clientController.subscription.typeTraining}" title="typeTrain" >
+            <h:selectOneMenu id="typeTrain" value="#{clientController.subscription.typeTraining}" title="typeTrain">
                 <f:selectItems value="#{clientController.allType}"/>
+                <f:ajax listener="#{clientController.calculatePrice()}" execute="@form" render="price"/>
             </h:selectOneMenu>
-            
+
             <h:outputLabel value="Продолжительность (в месяцах)" for="duration" />
             <h:selectOneMenu id="duration" value="#{clientController.subscription.duration}" title="duration" >
                 <f:selectItems value="#{clientController.allDuration}"/>
+                <f:ajax listener="#{clientController.calculatePrice()}" execute="@form" render="price"/>
             </h:selectOneMenu>
             <br/>
-            <h:outputLabel value="Хочу в группу!" for="needGroup" />
-            <h:selectBooleanCheckbox id="needGroup" value="#{clientController.subscription.needGroup}"/>
+            <h:outputLabel value="Хочу в группу!" for="needGroup"/>
+            <h:selectBooleanCheckbox id="needGroup" value="#{clientController.subscription.needGroup}">
+                <f:ajax listener="#{clientController.calculatePrice()}" execute="@form" render="price"/>
+            </h:selectBooleanCheckbox>
+            <br/>
+            <h:outputLabel value="Итого"/>
+            <h:outputText value="#{clientController.subscription.price}" id="price"/>
             <br/><br/>
             <h:commandButton action="#{clientController.createSubscriptionConfirm()}" value="Создать" class="btn btn-success"/>
         </h:form>

@@ -2,12 +2,14 @@ package models;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -22,21 +24,16 @@ public class BankClient implements Serializable {
     private String nameBankClient;
     
     @NotNull
+    //@Pattern(regexp = "[0-9]{13,16}")
+    @Column(unique = true)
     private long numberCard;
     
     @NotNull
+    //@Pattern(regexp = "\\d{3}")
     private int cvv;
     
     @NotNull
-    private int fund;
-    
-    @NotNull
-    @Size(max = 50, min = 10)
-    private String adress;
-    
-    @NotNull
-    @Size(max = 11, min = 11)
-    private String telephone;
+    private int avaliableResource;
     
     @NotNull
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -74,28 +71,12 @@ public class BankClient implements Serializable {
         this.cvv = cvv;
     }
 
-    public int getFund() {
-        return fund;
+    public int getAvaliableResource() {
+        return avaliableResource;
     }
 
-    public void setFund(int fund) {
-        this.fund = fund;
-    }
-
-    public String getAdress() {
-        return adress;
-    }
-
-    public void setAdress(String adress) {
-        this.adress = adress;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public void setAvaliableResource(int avaliableResource) {
+        this.avaliableResource = avaliableResource;
     }
 
     public Date getDateOfCard() {
@@ -105,5 +86,36 @@ public class BankClient implements Serializable {
     public void setDateOfCard(Date dateOfCard) {
         this.dateOfCard = dateOfCard;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + this.idBankClient;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final BankClient other = (BankClient) obj;
+        return this.idBankClient == other.idBankClient;
+    }
+    
+    public boolean checkRightData(BankClient bankClient){
+        return (this.cvv == bankClient.getCvv() && 
+                this.dateOfCard.equals(bankClient.getDateOfCard()) && 
+                this.nameBankClient.equals(bankClient.getNameBankClient()));
+        
+    }
+    
+    
 
 }

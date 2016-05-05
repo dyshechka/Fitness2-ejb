@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/E:/!Марта/!Универ/!6%20семестр/Распределенные%20программные%20системы/КП/Fitness2/Fitness2-ejb/src/java/services/ClientService.java</file>
+            <file>file:/E:/!Марта/!Универ/!6%20семестр/Распределенные%20программные%20системы/КП/Fitness2/Fitness2-ejb/src/java/models/Transfer.java</file>
+            <file>file:/E:/!Марта/!Универ/!6%20семестр/Распределенные%20программные%20системы/КП/Fitness2/Fitness2-ejb/src/java/models/BankClient.java</file>
+            <file>file:/E:/!Марта/!Универ/!6%20семестр/Распределенные%20программные%20системы/КП/Fitness2/Fitness2-ejb/src/conf/persistence.xml</file>
+            <file>file:/E:/!Марта/!Универ/!6%20семестр/Распределенные%20программные%20системы/КП/Fitness2/Fitness2-ejb/src/java/dao/BankDAOLocal.java</file>
+            <file>file:/E:/!Марта/!Универ/!6%20семестр/Распределенные%20программные%20системы/КП/Fitness2/Fitness2-ejb/src/java/dao/BankDAO.java</file>
+        </group>
     </open-files>
 </project-private>

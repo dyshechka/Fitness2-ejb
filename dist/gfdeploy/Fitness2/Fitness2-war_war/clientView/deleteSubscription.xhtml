@@ -16,17 +16,23 @@
 
     <ui:define name="content">
         <h:form>
-            <h:outputLabel value="Тип тренировки"/>
-
-            <h:outputLabel value="Вид тренировки"/>
-
-            <h:outputLabel value="Продолжительность"/>
-
-            <h:outputLabel value="Стоимость"/>
-            <br/>
+<!--            <h:panelGrid>-->
+                <h2>Тип тренировки</h2> 
+<!--                <h:outputLabel value="Тип тренировки"/>-->
+                <h:outputText value="#{clientController.currentUser.subscription.typeTraining}"/>
+                
+                <h2>Продолжительность</h2> 
+<!--                <h:outputLabel value="Продолжительность"/>-->
+                <h:outputText value="#{clientController.currentUser.subscription.duration}"/>
+                
+                <h2>Стоимость</h2> 
+<!--                <h:outputLabel value="Стоимость"/>-->
+                <h:outputText value="#{clientController.currentUser.subscription.price}"/>
+<!--            </h:panelGrid>-->
+            <br/><br/>
             <h:commandButton action="#{clientController.deleteSubscriptionConfirm()}" value="Удалить" class="btn btn-success"/>
         </h:form>
-        
+
         <hr/>
         <div class="footer-menu">
             <h:link outcome="client" value="Вернуться назад"/>

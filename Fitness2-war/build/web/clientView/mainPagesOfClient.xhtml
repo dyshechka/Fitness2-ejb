@@ -16,16 +16,14 @@
 
     <ui:define name="content">
         <h:form>
-            
-            <h:commandLink action="#{clientController.createSubsription()}" value="Создать абонемент" rendered="#{clientController.currentUser.subscription eq null}"/> <br/>
+            <h:commandLink action="#{clientController.updateYourself()}" value="Изменить данные о себе"/><br/>
+            <h:commandLink action="#{clientController.createSubsription()}" value="Создать абонемент" rendered="#{clientController.currentUser.subscription eq null}"/>
+            <h:link outcome="aboutSub" value="Об абонементе" rendered="#{clientController.currentUser.subscription ne null}"/><br/>
+            <h:commandLink action="#{clientController.deleteSubscription()}" value="Удалить абонемент" rendered="#{clientController.currentUser.subscription ne null}"/><br/>
+            <h:commandLink action="#{clientController.paySubscription()}" value="Оплатить абонемент" rendered="#{clientController.currentUser.subscription.status eq 'Подтвержден'}"/> 
 
-            <h:commandLink action="#{clientController.paySubscription()}" value="Оплатить абонемент" rendered="#{clientController.currentUser.subscription.status eq 'Подтвержден'}"/> <br/>
+            <br/>
 
-            <h:link outcome="aboutSub" value="Об абонементе"/><br/>
-            <h:commandLink action="#{clientController.deleteSubscription()}" value="Удалить абонемент" rendered="#{clientController.currentUser.subscription ne null}"/> <br/>
-
-            <h:commandLink action="#{clientController.updateYourself()}" value="Изменить данные о себе"/> <br/>
-            
             <hr/>
             <div class="footer-menu">
                 <h:commandLink action="#{autoController.logout()}" value="Выйти"/> 

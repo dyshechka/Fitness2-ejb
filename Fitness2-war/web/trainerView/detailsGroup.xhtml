@@ -4,7 +4,8 @@
                 template="./../template.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:define name="title">
         Подробная информация о группе
@@ -15,8 +16,44 @@
     </ui:define>
 
     <ui:define name="content">
-        <p>Здесь будет список клиентов, находящиеся в определенной группе</p>
-        
+        <h:form>
+            <c:choose>
+                <c:when test="#{trainerController.readUsersByGroup().size() ne 0}">
+                    <h1><h:outputText value="#{trainerController.currGroup.nameGroup}"/></h1>
+                    <h:dataTable value="#{trainerController.readUsersByGroup()}" var="item" class="table table-striped table-hover">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="ФИО"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fullName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Адрес эл.почты"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Телефон"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telephone}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Заморозить"/>
+                            </f:facet>
+                            <h:commandLink action="#{trainerController.freezeClient(item.idUser)}" value="Заморозить клиента"/>
+                        </h:column>
+                    </h:dataTable>
+                </c:when>
+                <c:otherwise>
+                    <h2>На данный момент в этой группе нет клиентов</h2>
+                </c:otherwise>
+            </c:choose>
+
+        </h:form>
+
         <hr/>
         <div class="footer-menu">
             <h:link outcome="trainer" value="Вернуться назад"/>

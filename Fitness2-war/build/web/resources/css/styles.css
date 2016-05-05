@@ -80,3 +80,7 @@ body table tr td {
 .right-text {
     text-align: right; 
 }
+
+li {
+    list-style-type: none;
+}

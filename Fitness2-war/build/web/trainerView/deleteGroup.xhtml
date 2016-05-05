@@ -17,7 +17,9 @@
     <ui:define name="content">
         <h:form>
 
-            <h:outputLabel value="Название группы"/> <br/>
+            <h2>Название группы</h2> 
+<!--            <h:outputLabel value="Название группы"/> -->
+            <h:outputText value="#{trainerController.group.nameGroup}"/><br/><br/>
             
             <h:commandButton action="#{trainerController.deleteGroupConfirm()}" value="Удалить" class="btn btn-success"/>
         </h:form>

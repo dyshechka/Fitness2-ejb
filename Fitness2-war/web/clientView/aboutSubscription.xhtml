@@ -4,7 +4,8 @@
                 template="./../template.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns="http://www.w3.org/1999/xhtml">
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:define name="title">
         Об абонементе
@@ -15,7 +16,39 @@
     </ui:define>
 
     <ui:define name="content">
-        <h:outputText value="#{clientController.currentUser.subscription.status}"/>
+        <h:form>
+            <p><b>Статус абонемента</b></p>
+            <!--                <h:outputLabel value="Статус абонемента"/>-->
+            <h:outputText value="#{clientController.currentUser.subscription.status}"/>
+            
+            <c:choose>
+                <c:when test="#{clientController.currentUser.subscription.status eq 'Оплачен'}">
+                    <p><b>Дата активации</b></p>
+                    <!--                        <h:outputLabel value="Дата активации"/>-->
+                </c:when>
+                <c:otherwise>
+                    <p><b>Дата приобретения</b></p>
+                    <!--                        <h:outputLabel value="Дата приобретения"/>-->
+                </c:otherwise>
+            </c:choose>
+            
+            <h:outputText value="#{clientController.currentUser.subscription.dateOfPurchase}">
+                <f:convertDateTime pattern="dd.MM.yyyy"/>
+            </h:outputText>
+            
+            <p><b>Продолжительность</b></p>
+            <!--                <h:outputLabel value="Продолжительность"/>-->
+            <h:outputText value="#{clientController.currentUser.subscription.duration}"/>
+            
+            <p><b>Тип тренировки</b></p>
+            <!--                <h:outputLabel value="Тип тренировки"/>-->
+            <h:outputText value="#{clientController.currentUser.subscription.typeTraining}"/>
+            
+            <p><b>В группе</b></p>
+            <!--                <h:outputLabel value="В группе"/>-->
+            <h:selectBooleanCheckbox value="#{clientController.currentUser.subscription.needGroup}" disabled="true"/>
+
+        </h:form>
         <hr/>
         <div class="footer-menu">
             <h:link outcome="client" value="Вернуться назад"/>

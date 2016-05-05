@@ -11,10 +11,10 @@ import models.UserFitness;
 
 @LocalBean
 @Stateless
-public class TrainerService{
+public class TrainerService {
 
     @EJB
-    public FitnessDAOLocal fitDAO;
+    private FitnessDAOLocal fitDAO;
 
     public List<Subscription> showFramedSubscription() {
         return fitDAO.readFramedSubscriptions();
@@ -23,7 +23,7 @@ public class TrainerService{
     public List<UserFitness> listFrozenClient() {
         return fitDAO.readFrozenUsers();
     }
-    
+
     public List<FitnessGroup> listGroups() {
         return fitDAO.readAllGroups();
     }
@@ -37,10 +37,13 @@ public class TrainerService{
     }
 
     public void changeGroup(FitnessGroup group, UserFitness user) {
-        FitnessGroup oldGroup = fitDAO.readGroup(user.getFitnessGroup().getIdGroup());
-        oldGroup.getUsers().remove(user);
+        if (user.getFitnessGroup() != null) {
+            FitnessGroup oldGroup = fitDAO.readGroup(user.getFitnessGroup().getIdGroup());
+            oldGroup.getUsers().remove(user);
+        }
         user.setFitnessGroup(group);
         group.getUsers().add(user);
+        user.setFrozen(false);
         fitDAO.updateGroup(group);
         fitDAO.updateUser(user);
     }
@@ -62,8 +65,30 @@ public class TrainerService{
         fitDAO.deleteSubscription(sub);
         fitDAO.updateUser(user);
     }
-    
+
     public FitnessGroup readGroup(int idGroup) {
         return fitDAO.readGroup(idGroup);
+    }
+
+    public UserFitness readUser(int idUser) {
+        return fitDAO.readUser(idUser);
+    }
+
+    public List<String> getTypesTraining() {
+        return fitDAO.getTypesTraining();
+    }
+
+    public List<FitnessGroup> readGroupsByTypeTraining(String typeTraining) {
+        return fitDAO.readGroupsByTypeTraining(typeTraining);
+    }
+
+    public List<UserFitness> readUsersByGroup(int idGroup) {
+        return fitDAO.readUsersByGroup(idGroup);
+    }
+
+    public void freezeClient(int idClient){
+        UserFitness userFitness = fitDAO.readUser(idClient);
+        userFitness.setFrozen(true);
+        userFitness.setFitnessGroup(null);
     }
 }

@@ -4,7 +4,8 @@
                 template="./../template.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns="http://www.w3.org/1999/xhtml">
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
     <ui:define name="title">
         Оплатить абонемент
@@ -16,24 +17,27 @@
 
     <ui:define name="content">
         <h:form>
-            <h:outputLabel value="К оплате: ...."/><br/>
+            <h:outputLabel value="К оплате: ">
+            <b><h:outputText value="#{clientController.currentUser.subscription.price}"/></b><br/><br/>
+            </h:outputLabel>
             
-            <h:outputLabel value="Имя владельца карты" for="nameBankClient" />
-            <h:inputText id="nameBankClient" value="#{clientController.bankClient.nameBankClient}" title="nameBankClient" />
+            <h:outputLabel value="Имя владельца карты" for="nameBankClient" title="nameBankClient"/>
+            <h:inputText id="nameBankClient" value="#{clientController.bankClient.nameBankClient}" title="nameBankClient" pt:placeholder="ФАМИЛИЯ ИМЯ"/>
 
             <h:outputLabel value="Номер карты" for="numberCard" />
-            <h:inputText id="numberCard" value="#{clientController.bankClient.numberCard}" title="numberCard" />
+            <h:inputText id="numberCard" value="#{clientController.bankClient.numberCard}" title="numberCard" pt:placeholder="0000 0000 0000 0000"/>
+                
 
             <h:outputLabel value="cvv" for="cvv" />
-            <h:inputText id="cvv" value="#{clientController.bankClient.cvv}" title="cvv" />
+            <h:inputText id="cvv" value="#{clientController.bankClient.cvv}" title="cvv" pt:placeholder="000"/>
 
-            <h:outputLabel value="Дата истечения карты (ММ/ГГ)" for="dateOfCard" />
-            <h:inputText value="#{clientController.bankClient.dateOfCard}" id="dateOfCard" title="dateOfCard">
-                <f:convertDateTime pattern="MM/yy"/>
+            <h:outputLabel value="Дата истечения карты" for="dateOfCard" />
+            <h:inputText value="#{clientController.bankClient.dateOfCard}" id="dateOfCard" title="dateOfCard" pt:placeholder="ММ / ГГ">
+                <f:convertDateTime pattern="dd/MM/yy"/>
             </h:inputText>
 
             <br/>    
-            <h:commandButton action="#{clientController.paySubscription()}" value="Оплатить" class="btn btn-success"/>
+            <h:commandButton action="#{clientController.paySubscriptionConfirm()}" value="Оплатить" class="btn btn-success"/>
         </h:form>
         
         <hr/>

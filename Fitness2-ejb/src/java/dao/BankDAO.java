@@ -1,13 +1,11 @@
 package dao;
 
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import models.BankClient;
-import models.IncomeAndExpenses;
-import models.OrderClient;
+import models.Transfer;
 
 @Stateless
 public class BankDAO implements BankDAOLocal {
@@ -21,14 +19,14 @@ public class BankDAO implements BankDAOLocal {
     }
 
     @Override
-    public BankClient readBankClient(int id) {
-        return em.find(BankClient.class, id);
-    }
-
-    @Override
-    public List<BankClient> readAllBankClients() {
-        Query query = em.createQuery("SELECT bc FROM BankClient bc");
-        return query.getResultList();
+    public BankClient readBankClient(long numberCard) {
+        try {
+            Query query = em.createQuery("SELECT b FROM BankClient b WHERE b.numberCard=?1", BankClient.class);
+            query.setParameter(1, numberCard);
+            return (BankClient) query.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override
@@ -37,60 +35,7 @@ public class BankDAO implements BankDAOLocal {
     }
 
     @Override
-    public void deleteBankClient(BankClient bankClient) {
-        em.remove(em.merge(bankClient));
+    public void createTransfer(Transfer transfer) {
+        em.persist(transfer);
     }
-
-    @Override
-    public void createOrder(OrderClient order) {
-        em.persist(order);
-    }
-
-    @Override
-    public OrderClient readOrder(int id) {
-        return em.find(OrderClient.class, id);
-    }
-
-    @Override
-    public List<OrderClient> readAllOrders() {
-        Query query = em.createQuery("SELECT o FROM OrderClient o");
-        return query.getResultList();
-    }
-
-    @Override
-    public OrderClient updateOrder(OrderClient order) {
-        return em.merge(order);
-    }
-
-    @Override
-    public void deleteOrder(OrderClient order) {
-        em.remove(em.merge(order));
-    }
-
-    @Override
-    public void createIncomeAndExpenses(IncomeAndExpenses iae) {
-        em.persist(iae);
-    }
-
-    @Override
-    public IncomeAndExpenses readIncomeAndExpenses(int id) {
-        return em.find(IncomeAndExpenses.class, id);
-    }
-
-    @Override
-    public List<IncomeAndExpenses> readAllIncomeAndExpenses() {
-        Query query = em.createQuery("SELECT iae FROM IncomeAndExpenses iae");
-        return query.getResultList();
-    }
-
-    @Override
-    public IncomeAndExpenses updateIncomeAndExpenses(IncomeAndExpenses iae) {
-        return em.merge(iae);
-    }
-
-    @Override
-    public void deleteIncomeAndExpenses(IncomeAndExpenses iae) {
-        em.remove(em.merge(iae));
-    }
-
 }

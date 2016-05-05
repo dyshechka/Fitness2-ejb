@@ -3,9 +3,10 @@ package beans;
 import services.ClientService;
 import java.io.Serializable;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import models.BankClient;
 import models.Subscription;
@@ -18,26 +19,16 @@ public class ClientController implements Serializable {
 
     @EJB
     private ClientService cs;
-    
+
     @EJB
     private AutoService as;
 
-    private UserFitness currentUser;
     private Subscription subscription;
     private BankClient bankClient;
+    private UserFitness user;
 
-    @PostConstruct
-    private void onCreate(){
-        currentUser = as.getCurrUser();
-        int a=5;
-    }
-    
     public UserFitness getCurrentUser() {
-        return currentUser;
-    }
-
-    public void setCurrentUser(UserFitness currentUser) {
-        this.currentUser = currentUser;
+        return as.getCurrUser();
     }
 
     public Subscription getSubscription() {
@@ -55,13 +46,27 @@ public class ClientController implements Serializable {
     public void setBankClient(BankClient bankClient) {
         this.bankClient = bankClient;
     }
-    
+
+    public UserFitness getUser() {
+        return user;
+    }
+
+    public void setUser(UserFitness user) {
+        this.user = user;
+    }
+
     public String paySubscription() {
+        bankClient = new BankClient();
         return "paySub";
     }
 
     public String paySubscriptionConfirm() {
-        //здесь будет транзакция... когда-нибудь.. в следующей жизни
+        try {
+            cs.paySubscription(as.getCurrUser(), bankClient);
+            showMessage("Абонемент оплачен успешно");
+        } catch (Exception e) {
+            showMessage(e.getCause().getMessage());
+        }
         return "client";
     }
 
@@ -71,9 +76,9 @@ public class ClientController implements Serializable {
     }
 
     public String createSubscriptionConfirm() {
-        cs.createSubscription(currentUser, subscription);
-        currentUser = as.getCurrUser();
+        cs.createSubscription(as.getCurrUser(), subscription);
         subscription = new Subscription();
+        showMessage("Абонемент создан");
         return "client";
     }
 
@@ -82,24 +87,37 @@ public class ClientController implements Serializable {
     }
 
     public String deleteSubscriptionConfirm() {
-        cs.deleteSubscription(currentUser.getSubscription());
+        cs.deleteSubscription(as.getCurrUser().getSubscription());
+        showMessage("Абонемент удален");
         return "client";
     }
 
-    public String updateYourself(){
+    public String updateYourself() {
+        user = as.getCurrUser();
         return "update";
-    } 
-    
-    public String updateYourselfConfirm(){
-        cs.updateData(currentUser);
-        return "client";
-    } 
-    
-    public List<String> getAllType() {
-        return cs.getAllType();
     }
-    
+
+    public String updateYourselfConfirm() {
+        cs.updateData(user);
+        showMessage("Вы изменили данные о себе");
+        return "client";
+    }
+
+    public List<String> getAllType() {
+        return cs.getTypesTraining();
+    }
+
     public List<Integer> getAllDuration() {
         return cs.getAllDuration();
+    }
+
+    public void calculatePrice() {
+        subscription.setPrice(cs.calculatePrice(subscription));
+    }
+
+    private void showMessage(String message) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(message));
+        context.getExternalContext().getFlash().setKeepMessages(true);
     }
 }

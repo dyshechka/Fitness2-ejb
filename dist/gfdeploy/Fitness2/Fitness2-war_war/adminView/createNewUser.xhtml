@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
                 template="./../template.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns="http://www.w3.org/1999/xhtml"
@@ -21,10 +22,9 @@
             <h:inputText id="fullName" value="#{adminController.user.fullName}" title="fullName" />
             
             <h:outputLabel value="Дата рождения" for="dateOfBirth" />
-            <h:inputText id="dateOfBirth" value="#{adminController.user.dateOfBirth}" title="dateOfBirth">
-                <f:convertDateTime pattern="dd-MM-yyyy"/>
-            </h:inputText>
-            
+            <input type="date" jsf:id="dateOfBirth" jsf:value="#{adminController.user.dateOfBirth}">
+                <f:convertDateTime pattern="yyyy-MM-dd"/>
+            </input>
             <h:outputLabel value="Адрес эл. почты" for="email" />
             <h:inputText id="email" value="#{adminController.user.email}" title="email" />
             
@@ -35,7 +35,7 @@
             <h:inputText id="login" value="#{adminController.user.login}" title="login" />
             
             <h:outputLabel value="Пароль" for="password" />
-            <h:inputText id="password" value="#{adminController.user.password}" title="password" />
+            <h:inputSecret id="password" value="#{adminController.user.password}" title="password" />
             
             <h:outputLabel value="Выберите роль" for="editRole" />
             <h:selectOneMenu id="editRole" value="#{adminController.idRole}" title="editRole" >

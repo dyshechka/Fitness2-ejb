@@ -26,6 +26,7 @@ public class AdminService {
     public UserFitness editRole(UserFitness user, int idRole) {
         UserRole role = fitDAO.readRole(idRole);
         user.setRole(role);
+        user.setSubscription(null);
         return fitDAO.updateUser(user);
     }
 

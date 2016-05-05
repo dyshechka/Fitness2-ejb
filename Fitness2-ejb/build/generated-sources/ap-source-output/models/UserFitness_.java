@@ -8,7 +8,7 @@ import models.FitnessGroup;
 import models.Subscription;
 import models.UserRole;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-04-21T21:57:02")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-05-06T00:41:49")
 @StaticMetamodel(UserFitness.class)
 public class UserFitness_ { 
 

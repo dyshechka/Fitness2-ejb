@@ -16,8 +16,7 @@
   <persistence-unit name="Fitness2-ejbPUBank" transaction-type="JTA">
     <jta-data-source>jdbc/bank</jta-data-source>
     <class>models.BankClient</class>
-    <class>models.IncomeAndExpenses</class>
-    <class>models.OrderClient</class>
+    <class>models.Transfer</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>

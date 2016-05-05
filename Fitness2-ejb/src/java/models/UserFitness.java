@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,10 +36,11 @@ public class UserFitness implements Serializable {
     private String email;
     
     @NotNull
-    private int telephone;
+    private Integer telephone;
     
     @NotNull
     @Size(max = 20, min = 5)
+    @Column(unique = true)
     private String login;
     
     @NotNull
@@ -51,7 +53,7 @@ public class UserFitness implements Serializable {
     @OneToOne
     private UserRole role;
     
-    @OneToOne (orphanRemoval = true)
+    @OneToOne(orphanRemoval = true)
     private Subscription subscription;
     
     public int getIdUser() {
@@ -86,11 +88,11 @@ public class UserFitness implements Serializable {
         this.email = email;
     }
 
-    public int getTelephone() {
+    public Integer getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(int telephone) {
+    public void setTelephone(Integer telephone) {
         this.telephone = telephone;
     }
 

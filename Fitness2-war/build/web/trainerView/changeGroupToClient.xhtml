@@ -17,6 +17,9 @@
     <ui:define name="content">
         <h:form>
             <h:outputLabel value="Выберите группу" for="changeGroup" />
+            <h:selectOneMenu id="changeGroup" value="#{trainerController.idGroup}" title="changeGroup">
+                <f:selectItems value="#{trainerController.readGroupsByTypeTraining()}" var="group" itemLabel="#{group.nameGroup}" itemValue="#{group.idGroup}"/>
+            </h:selectOneMenu>
 
             <br/>
             <h:commandButton action="#{trainerController.changeGroupConfirm()}" value="Изменить" class="btn btn-success"/>

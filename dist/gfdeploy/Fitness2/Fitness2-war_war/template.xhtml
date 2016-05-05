@@ -2,12 +2,34 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/bootstrap.css"/>
         <h:outputStylesheet name="./css/styles.css"/>
+        
+        <h:outputScript name="./js/application.js"/>
+        <h:outputScript name="./js/bootstrap-alert.js"/>
+        <h:outputScript name="./js/jquery.js"/>
+        
+        <h:outputScript name="./js/bootstrap-affix.js"/>
+        <h:outputScript name="./js/bootstrap-button.js"/>
+        <h:outputScript name="./js/bootstrap-carousel.js"/>
+        <h:outputScript name="./js/bootstrap-collapse.js"/>
+        <h:outputScript name="./js/bootstrap-dropdown.js"/>
+        <h:outputScript name="./js/bootstrap-modal.js"/>
+        <h:outputScript name="./js/bootstrap-popover.js"/>
+        <h:outputScript name="./js/bootstrap-scrollspy.js"/>
+        <h:outputScript name="./js/bootstrap-tab.js"/>
+        <h:outputScript name="./js/bootstrap-tooltip.js"/>
+        <h:outputScript name="./js/bootstrap-transition.js"/>
+        <h:outputScript name="./js/bootstrap-typeahead.js"/>
+        <h:outputScript name="./js/carbon.js"/>
+        <h:outputScript name="./js/holder.js"/>
+        <h:outputScript name="./js/prettify.js"/>
+        <h:outputScript name="./js/widgets.js"/>
 
         <title><ui:insert name="title">Facelets Template</ui:insert></title>
     </h:head>
@@ -18,11 +40,26 @@
             <div class="header">
                 <h2><ui:insert name="pagename">PageName</ui:insert></h2>
             </div>
+
+            <c:choose>
+                <c:when test="#{facesContext.messageList.size() ne 0}">
+                    <h:form>
+                        <div class="alert alert-info">
+                            <button class="close" data-dismiss="alert">&times;</button>
+                            <strong>Информация!</strong>
+                            <h:messages/>
+                        </div>
+                    </h:form>
+                </c:when>
+                <c:otherwise>
+                    <p></p>
+                </c:otherwise>>
+            </c:choose>
+
             <ui:insert name="content">Content</ui:insert>
         </div>
 
         <div class="footer-menu">
-            <h:messages/>
         </div>
     </h:body>
 
